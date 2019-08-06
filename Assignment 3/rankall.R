@@ -6,13 +6,14 @@ rankall <- function(outcome, num = "best") {
              outcome != "pneumonia") stop("invalid outcome")
     ## For each state, find the hospital of the given rank
     else {
-        if (outcome == "heart attack") column <- as.numeric(data[,11])
-        else if (outcome == "heart failure") column <- as.numeric(data[,17])
-        else column <- as.numeric(data[,23])
         hospnames <- character()
         for (state in sort(unique(data$State))){
             datastate <- data[data$State == state, ]
+            if (outcome == "heart attack") column <- as.numeric(datastate[,11])
+            else if (outcome == "heart failure") column <- as.numeric(datastate[,17])
+            else column <- as.numeric(datastate[,23])
             hosp <- lookuphosp(column, datastate, num)
+            names(hosp) <- state
             hospnames <- c(hospnames, hosp)
         }
     }
@@ -36,4 +37,3 @@ lookuphosp <- function(column, data, num){
     }
     hosp
 }
-

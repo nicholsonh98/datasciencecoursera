@@ -20,7 +20,7 @@ rankall <- function(outcome, num = "best") {
     ## Return a data frame with the hospital names and the
     ## (abbreviated) state name
     dataout <- cbind(hospital = hospnames, state = sort(unique(data$State)))
-    dataout
+    data.frame(dataout)
 }
 
 lookuphosp <- function(column, data, num){

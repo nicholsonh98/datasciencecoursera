@@ -37,3 +37,6 @@ lookuphosp <- function(column, data, num){
     }
     hosp
 }
+
+r <- rankall("heart failure", 10)
+as.character(subset(r, state == "NV")$hospital)
